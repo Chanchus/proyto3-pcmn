@@ -40,7 +40,7 @@ public class Ghost extends Entity implements Runnable{
 		map = pmap;
 		window = pwindow;
 		
-		direction = "right";
+		//direction = "right";
 		
 	}
 	
@@ -57,12 +57,17 @@ public class Ghost extends Entity implements Runnable{
 	@Override
 	public void run() {
 		
+		System.out.println("RUN DEL ENEMIGO");
+
+		
+		
 		while(true) {
 			
 			try {
 				
-				move();
+				
 				System.out.println("me muevo soy el enemigo");
+				move();
 				Thread.sleep(450);
 				
 			} catch (InterruptedException e) {
@@ -109,6 +114,8 @@ public class Ghost extends Entity implements Runnable{
 	
 	public void move() {
 		
+		
+		System.out.println("EL MALO SE ESTA MOVIENODOOODODODO");
 		
 		if (direction.equals("right"))
 		{

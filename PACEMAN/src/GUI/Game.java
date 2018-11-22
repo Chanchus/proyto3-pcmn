@@ -17,7 +17,8 @@ public class Game extends JPanel implements KeyListener{
 
 	
 	
-	ClientSocket socket;
+	ClientSocket playerSocket;
+	ClientSocket enemySocket;
 	Player player;
 	Ghost redGhost;
 	
@@ -49,14 +50,27 @@ public class Game extends JPanel implements KeyListener{
 		
 		
 		
-		socket = new ClientSocket();
-			
+		playerSocket = new ClientSocket();
+		enemySocket = new ClientSocket();	
 
 		
 		
 		
 		
+		player = new Player(15, 14, playerSocket, map, window);
+		redGhost = new Ghost(8, 14, "red", enemySocket, map, window);
 		
+		
+		
+		Thread playerThread = new Thread(player);
+		Thread redGhostThread = new Thread(redGhost);
+		
+		System.out.println("este es el player: " + player);
+		System.out.println("este es el ghost: " + redGhost);
+		
+		
+		playerThread.start();
+		redGhostThread.start();
 		
 		
 		this.setFocusable(true);
@@ -73,20 +87,7 @@ public class Game extends JPanel implements KeyListener{
 		
 		
 			
-			player = new Player(15, 14, socket, map, window);
-			redGhost = new Ghost(8, 14, "red", socket, map, window);
 			
-			
-			
-			Thread playerThread = new Thread(player);
-			Thread redGhostThread = new Thread(redGhost);
-			
-			System.out.println("este es el player: " + player);
-			System.out.println("este es el ghost: " + redGhost);
-			
-			
-			playerThread.start();
-			redGhostThread.start();
 			
 
 		
@@ -133,15 +134,15 @@ public class Game extends JPanel implements KeyListener{
 					
 					System.out.println("red ghost is here " + i + ", " + j);
 					
-					//redGhost.setPosX(j);
-					//redGhost.setPosY(i);
+					redGhost.setPosX(j);
+					redGhost.setPosY(i);
 				}
 	
 				
 			}
 		}
 		player.draw(g);
-		//redGhost.draw(g);
+		redGhost.draw(g);
 		
 		
         
@@ -163,7 +164,7 @@ public class Game extends JPanel implements KeyListener{
 		if(keyCode == KeyEvent.VK_RIGHT){
 			
 			
-			//redGhost.isMoving = true;
+			redGhost.isMoving = true;
 			
 			int currentX = player.getPosX();
 			int currentY = player.getPosY();
@@ -173,11 +174,11 @@ public class Game extends JPanel implements KeyListener{
 			if( map[currentY][currentX + 1] != 1)
 			{
 				
-				String msg = socket.sendMessage("player direction r");
+				String msg = playerSocket.sendMessage("player direction r");
 			
 				
 				
-				
+				redGhost.moveRight();
 				System.out.println("moving right");
 				player.moveRight();
 				
@@ -202,7 +203,7 @@ public class Game extends JPanel implements KeyListener{
 			if( map[currentY][currentX - 1] != 1)
 			{
 				
-				String msg = socket.sendMessage("player direction l");
+				String msg = playerSocket.sendMessage("player direction l");
 			
 				
 				
@@ -233,7 +234,7 @@ public class Game extends JPanel implements KeyListener{
 			if( map[currentY - 1][currentX] != 1)
 			{
 				
-				String msg = socket.sendMessage("player direction u");
+				String msg = playerSocket.sendMessage("player direction u");
 			
 				
 			
@@ -262,7 +263,7 @@ public class Game extends JPanel implements KeyListener{
 			if( map[currentY + 1][currentX] != 1)
 			{
 				
-				String msg = socket.sendMessage("player direction d");
+				String msg = playerSocket.sendMessage("player direction d");
 			
 				
 				
