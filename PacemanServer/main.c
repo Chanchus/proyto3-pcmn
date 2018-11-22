@@ -7,7 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "MovimientoJugador.c"
+//#include "MovimientoJugador.c"
 
 
 struct EntityStruct{
@@ -278,6 +278,29 @@ void messageIdentifier(char* buffer)
 
                     sendMessage(msg);
                 }
+                else{
+
+
+
+                    char message[64] = "player move";
+
+                    char numero[4];
+                    sprintf(numero, " %d", player.x);
+
+                    strcat(message, numero);
+
+                    sprintf(numero, " %d", player.y);
+
+                    strcat(message, numero);
+                    strcat(message, " \n");
+
+                    char* msg = message;
+
+                   // printf("voy a enviar este movimiento: %s", msg);
+
+                    sendMessage(msg);
+
+                }
 
 
 
@@ -320,6 +343,29 @@ void messageIdentifier(char* buffer)
                     //printf("voy a enviar este movimiento: %s", msg);
 
                     sendMessage(msg);
+                }
+                else{
+
+
+
+                    char message[64] = "player move";
+
+                    char numero[4];
+                    sprintf(numero, " %d", player.x);
+
+                    strcat(message, numero);
+
+                    sprintf(numero, " %d", player.y);
+
+                    strcat(message, numero);
+                    strcat(message, " \n");
+
+                    char* msg = message;
+
+                   // printf("voy a enviar este movimiento: %s", msg);
+
+                    sendMessage(msg);
+
                 }
 
 
@@ -364,6 +410,29 @@ void messageIdentifier(char* buffer)
 
                     sendMessage(msg);
                 }
+                else{
+
+
+
+                    char message[64] = "player move";
+
+                    char numero[4];
+                    sprintf(numero, " %d", player.x);
+
+                    strcat(message, numero);
+
+                    sprintf(numero, " %d", player.y);
+
+                    strcat(message, numero);
+                    strcat(message, " \n");
+
+                    char* msg = message;
+
+                   // printf("voy a enviar este movimiento: %s", msg);
+
+                    sendMessage(msg);
+
+                }
 
 
 
@@ -407,34 +476,35 @@ void messageIdentifier(char* buffer)
 
                     sendMessage(msg);
                 }
+                else{
+
+
+
+                    char message[64] = "player move";
+
+                    char numero[4];
+                    sprintf(numero, " %d", player.x);
+
+                    strcat(message, numero);
+
+                    sprintf(numero, " %d", player.y);
+
+                    strcat(message, numero);
+                    strcat(message, " \n");
+
+                    char* msg = message;
+
+                   // printf("voy a enviar este movimiento: %s", msg);
+
+                    sendMessage(msg);
+
+                }
 
 
             }
 
 
-            else{
 
-
-
-                char message[64] = "player move";
-
-                char numero[4];
-                sprintf(numero, " %d", player.x);
-
-                strcat(message, numero);
-
-                sprintf(numero, " %d", player.y);
-
-                strcat(message, numero);
-                strcat(message, " \n");
-
-                char* msg = message;
-
-               // printf("voy a enviar este movimiento: %s", msg);
-
-                sendMessage(msg);
-
-            }
 
         }
 
@@ -450,16 +520,16 @@ void messageIdentifier(char* buffer)
 
     /** **************** Movimiento del  los enemigos *******************
      *   ****************************************************************/
-
+/**
 
     if(strncmp(splitStrings[0], "enemy", 5) == 0)
     {
-        /** **************** Direccion del Jugador ********************/
+        ** **************** Direccion del Jugador ********************
 
         if (strncmp(splitStrings[1], "direction", 9) == 0)
         {
 
-            /** **************** Direccion derecha ********************/
+            ** **************** Direccion derecha ********************
 
             if(strncmp(splitStrings[2], "r", 1) ==0 )
             {
@@ -489,7 +559,7 @@ void messageIdentifier(char* buffer)
 
             }
 
-            /** **************** Direccion izquierda ********************/
+            ** **************** Direccion izquierda ********************
 
             if(strncmp(splitStrings[2], "l", 1) ==0 )
             {
@@ -521,7 +591,7 @@ void messageIdentifier(char* buffer)
             }
 
 
-            /** **************** Direccion arriba ********************/
+            ** **************** Direccion arriba ********************
 
             if(strncmp(splitStrings[2], "u", 1) ==0 )
             {
@@ -552,7 +622,7 @@ void messageIdentifier(char* buffer)
 
             }
 
-            /** **************** Direccion abajo ********************/
+            ** **************** Direccion abajo ********************
 
             if(strncmp(splitStrings[2], "d", 1) ==0 )
             {
@@ -587,7 +657,7 @@ void messageIdentifier(char* buffer)
     }
 
 
-    /**  MOVIMIENTO DE LOS ENEMIGOS *******************************************************************/
+    **  MOVIMIENTO DE LOS ENEMIGOS *******************************************************************
 
 
     if (strncmp(splitStrings[1], "move", 4) == 0)
@@ -595,14 +665,14 @@ void messageIdentifier(char* buffer)
 
 
 
-        /**  MOVIMIENTO DEL ENEMIGO ROJO *******************************************************************/
+        **  MOVIMIENTO DEL ENEMIGO ROJO *******************************************************************
 
 
 
         if (strncmp(splitStrings[2], "red", 3) == 0)
         {
 
-            /** movimiento hacia la derecha ******************************************************************************/
+            ** movimiento hacia la derecha ******************************************************************************
 
 
             if( strncmp(redGhost.direction, "r", 1) == 0)
@@ -616,7 +686,7 @@ void messageIdentifier(char* buffer)
 
 
 
-                    map[redGhost.x][redGhost.y] = 0;
+                    //map[redGhost.x][redGhost.y] = 0;
                     ++redGhost.y;
                     map[redGhost.x][redGhost.y] = 4;
 
@@ -646,7 +716,7 @@ void messageIdentifier(char* buffer)
 
             }
 
-            /** movimiento hacia la izquierda ******************************************************************************/
+            /** movimiento hacia la izquierda ******************************************************************************
 
             if( strncmp(redGhost.direction, "l", 1) == 0)
             {
@@ -659,7 +729,7 @@ void messageIdentifier(char* buffer)
 
 
 
-                    map[redGhost.x][redGhost.y] = 0;
+                    //map[redGhost.x][redGhost.y] = 0;
                     --redGhost.y;
                     map[redGhost.x][redGhost.y] = 4;
 
@@ -689,7 +759,7 @@ void messageIdentifier(char* buffer)
 
 
             }
-            /** movimiento hacia la arriba ******************************************************************************/
+            /** movimiento hacia la arriba ******************************************************************************
 
             if( strncmp(redGhost.direction, "u", 1) == 0)
             {
@@ -702,7 +772,7 @@ void messageIdentifier(char* buffer)
 
 
 
-                    map[redGhost.x][redGhost.y] = 0;
+                    //map[redGhost.x][redGhost.y] = 0;
                     --redGhost.x;
                     map[redGhost.x][redGhost.y] = 4;
 
@@ -732,7 +802,7 @@ void messageIdentifier(char* buffer)
 
             }
 
-            /** movimiento hacia la abajo ******************************************************************************/
+            /** movimiento hacia la abajo ******************************************************************************
 
             if( strncmp(player.direction, "d", 1) == 0)
             {
@@ -745,7 +815,7 @@ void messageIdentifier(char* buffer)
 
 
 
-                    map[redGhost.x][redGhost.y] = 0;
+                    //map[redGhost.x][redGhost.y] = 0;
                     ++redGhost.x;
                     map[redGhost.x][redGhost.y] = 4;
 
@@ -804,7 +874,7 @@ void messageIdentifier(char* buffer)
 
 
 
-    }
+    }*/
 
 
 

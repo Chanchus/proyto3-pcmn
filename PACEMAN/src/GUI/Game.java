@@ -51,26 +51,26 @@ public class Game extends JPanel implements KeyListener{
 		
 		
 		playerSocket = new ClientSocket();
-		enemySocket = new ClientSocket();	
+		//enemySocket = new ClientSocket();	
 
 		
 		
 		
 		
 		player = new Player(15, 14, playerSocket, map, window);
-		redGhost = new Ghost(8, 14, "red", enemySocket, map, window);
+		//redGhost = new Ghost(8, 14, "red", enemySocket, map, window);
 		
 		
 		
 		Thread playerThread = new Thread(player);
-		Thread redGhostThread = new Thread(redGhost);
+		//Thread redGhostThread = new Thread(redGhost);
 		
 		System.out.println("este es el player: " + player);
 		System.out.println("este es el ghost: " + redGhost);
 		
 		
 		playerThread.start();
-		redGhostThread.start();
+		//redGhostThread.start();
 		
 		
 		this.setFocusable(true);
@@ -134,15 +134,15 @@ public class Game extends JPanel implements KeyListener{
 					
 					System.out.println("red ghost is here " + i + ", " + j);
 					
-					redGhost.setPosX(j);
-					redGhost.setPosY(i);
+					//redGhost.setPosX(j);
+					//redGhost.setPosY(i);
 				}
 	
 				
 			}
 		}
 		player.draw(g);
-		redGhost.draw(g);
+		//redGhost.draw(g);
 		
 		
         
@@ -164,7 +164,7 @@ public class Game extends JPanel implements KeyListener{
 		if(keyCode == KeyEvent.VK_RIGHT){
 			
 			
-			redGhost.isMoving = true;
+			//redGhost.isMoving = true;
 			
 			int currentX = player.getPosX();
 			int currentY = player.getPosY();
@@ -178,7 +178,7 @@ public class Game extends JPanel implements KeyListener{
 			
 				
 				
-				redGhost.moveRight();
+			
 				System.out.println("moving right");
 				player.moveRight();
 				
